@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import Auth,{SignIn,SignUp} from './Components/Authentication/Auth';
+import Auth,{SignIn,SignUp,EmailVerified,ForgotPassword,PasswordReset} from './Components/Authentication/Auth';
 import UserDashboard from './Components/User/UserDashboard';
 import { Route,Routes } from 'react-router-dom';
 import Followers from './Components/User/Followers/Followers';
@@ -16,6 +16,9 @@ const accessToken = localStorage.getItem("accessToken")
       <Route index element={<SignIn/>}/>
       <Route path='/SignIn' index element={<SignIn/>}/>
       <Route path='/SignUp' element={<SignUp/>}/>
+      <Route path=":id/verify/:token" element={<EmailVerified/>}/>
+      <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
+      <Route path="/password-reset/:id/:token" element={<PasswordReset/>}/>
     </Route>
     {/* Dashboard Routes */}
     {accessToken && <Route path='/Dashboard' element={<UserDashboard/>}>

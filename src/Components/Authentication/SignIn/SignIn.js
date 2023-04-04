@@ -56,6 +56,7 @@ const SignIn = ()=> {
             onClick={()=>dispatch(signin({state}))}/>
         <br/>
         <Link to="/SignUp">Doesn't have an account?</Link>
+        <Link to="/ForgotPassword">Forgot Password?</Link>
     </div>
   )
 }
