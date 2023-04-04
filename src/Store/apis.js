@@ -47,3 +47,38 @@ export const SearchHandler = async (searchQuery) => {
   });
   return response;
 };
+export const verifyEmailUrl = async (params) =>{
+  try {
+  const response = await axios.get(`${params.id}/verify/${params.token}`);
+  return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+export const resetPassword = async (state) =>{
+  try {
+    const response = await axios.post('password-reset',state);
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+  
+}
+export const verifyResetPasswordurl = async (params) =>{
+  try {
+      const response = await axios.get(`password-reset/${params.id}/${params.token}`)
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
+}
+export const UpdateNewPassword = async (state) =>{
+  const {params,Password} = state
+  try {
+    const response = await axios.post(`password-reset/${params.id}/${params.token}`,{Password})
+    window.location = "/SignIn"
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+}

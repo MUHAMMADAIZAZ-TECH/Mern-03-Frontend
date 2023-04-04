@@ -3,48 +3,20 @@ import React ,{useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom';
 import { TextInput,CustomButton } from '../../UI-Components/Index';
 import {Typography,CssBaseline,Box,Container} from '@mui/material';
+import { verifyresetpasswordurl ,updatenewpassword} from "../../../Store/Slicers/Authentication/AuthenticationSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 export default function PasswordReset() {
-    const [state,setState] = useState({Password:""})
-    const [validUrl,setValidUrl] = useState(false);
-    const [error,seterror] = useState("")
-    const [msg,setmsg] = useState("")
+    const dispatch = useDispatch();
+    const state = useSelector((state) => state.auth);
+    const [Password,setPassword] = useState('')
     const params = useParams();
-    const url = `http://localhost:8080/password-reset/${params.id}/${params.token}`
-    const HanldeInput = (e)=>{
-        setState({
-          ...state,[e.target.name]:e.target.value
-        })
-      }
-      const HandleClick = async () =>{
-        try {
-          const {data:res}= await axios.post(url,state);
-          setmsg(res.Message)
-          seterror("")
-          window.location = "/SignIn"
-        } catch (error) {
-          if(error.response && 
-            error.response.status>= 400 &&
-            error.response.status<= 500) 
-          {
-            seterror(error.response.data.Message)
-            setmsg("")
-          }
-        }
-        
-      }
+    const HanldeInput = (e) => setPassword(e.target.value);
     useEffect(()=>{
-        const verifyUrl = async () =>{
-            try {
-                await axios.get(url)
-                setValidUrl(true)
-            } catch (error) {
-                setValidUrl(false)
-            }
-        }
-        verifyUrl()
+        dispatch(verifyresetpasswordurl(params))
     },[params.id,params.token])
   return (
-    <React.Fragment>{validUrl?(
+    <React.Fragment>{state?.urlValid ?(
       <React.Fragment>
       <CssBaseline />
       <Container maxWidth="sm">
@@ -58,7 +30,7 @@ export default function PasswordReset() {
               label="Password" 
               name="Password" 
               type="password" 
-              value={state.Password} 
+              value={Password} 
               change={HanldeInput} 
               variant="outlined" />
               <br/>
@@ -67,17 +39,15 @@ export default function PasswordReset() {
                 text="Sign In" 
                 size="large"
                 fullWidth
-                onClick={HandleClick}/>
+                onClick={()=>dispatch(updatenewpassword({params:params,Password:Password}))}/>
         </div>
-        {error && <div>Error:{error}</div>}
-        {msg && <div>Message:{msg}</div>}
+        {state.error && <div>Error:{state.error}</div>}
+        {state.message && <div>Message:{state.message}</div>}
         </Box>
       </Container>
     </React.Fragment>
   ):(
-      <div>
-          <h1>404 Not Found</h1>
-      </div>
+      <div><h1>404 Not Found</h1></div>
   )}
      </React.Fragment>
   )

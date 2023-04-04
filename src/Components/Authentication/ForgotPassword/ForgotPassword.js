@@ -1,36 +1,14 @@
 import React,{useState} from 'react';
 import { TextInput,CustomButton } from '../../UI-Components/Index';
 import {Typography,CssBaseline,Box,Container} from '@mui/material';
-import "./ForgotPassword.css"
-import axios from 'axios';
+import { resetpassword } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 export default function ForgotPassword() {
-    const [state,setState] = useState({Email:""})
-    const [error,seterror] = useState("")
-    const [msg,setmsg] = useState("")
-      const HanldeInput = (e)=>{
-        setState({
-          ...state,[e.target.name]:e.target.value
-        })
-      }
-      const HandleClick = async () =>{
-        try {
-          const url ="http://localhost:8080/password-reset";
-          const {data:res}= await axios.post(url,state);
-          setmsg(res.Message)
-          seterror("")
-          // console.log("Navigate To Sign In: User Registerd Successfully")
-          
-        } catch (error) {
-          if(error.response && 
-            error.response.status>= 400 &&
-            error.response.status<= 500) 
-          {
-            seterror(error.response.data.Message)
-            setmsg("")
-          }
-        }
-        
-      }
+    const [Email,setEmail] = useState('')
+    const dispatch = useDispatch();
+    const state = useSelector((state) => state.auth);
+    const HanldeInput = (e)=> setEmail(e.target.value);
   return (
     <React.Fragment>
     <CssBaseline />
@@ -45,7 +23,7 @@ export default function ForgotPassword() {
             label="Email" 
             name="Email" 
             type="text" 
-            value={state.Email} 
+            value={Email} 
             change={HanldeInput} 
             variant="outlined" />
             <br/>
@@ -54,10 +32,10 @@ export default function ForgotPassword() {
               text="Sign In" 
               size="large"
               fullWidth
-              onClick={HandleClick}/>
+              onClick={()=>dispatch(resetpassword({Email:Email}))}/>
       </div>
-      {error && <div>Error:{error}</div>}
-      {msg && <div>Message:{msg}</div>}
+      {state.error && <div>Error:{state.error}</div>}
+      {state.error && <div>Message:{state.message}</div>}
       </Box>
     </Container>
   </React.Fragment>
