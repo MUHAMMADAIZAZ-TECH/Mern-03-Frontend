@@ -1,14 +1,53 @@
 import './App.css';
-import React from 'react';
+import React,{useEffect} from 'react';
 import Auth,{SignIn,SignUp,EmailVerified,ForgotPassword,PasswordReset} from './Components/Authentication/Auth';
 import UserDashboard from './Components/User/UserDashboard';
-import { Route,Routes } from 'react-router-dom';
+import { Route,Routes,useNavigate } from 'react-router-dom';
 import Followers from './Components/User/Followers/Followers';
 import Followings from './Components/User/Followings/Followings';
 import Home from './Components/User/Home/Home';
+import { authenticateUser } from './Store/Slicers/Authentication/AuthenticationSlice';
+import { useDispatch,useSelector } from 'react-redux';
 function App() {
 const accessToken = localStorage.getItem("accessToken")
-
+const navigate =  useNavigate()
+const dispatch = useDispatch()
+const state = useSelector((state)=>state.auth)
+const getUser = () => {
+  fetch("http://localhost:8080/auth/login/success", {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": true,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) return response.json();
+      throw new Error("authentication has been failed!");
+    })
+    .then((resObject) => {
+      navigate('/Dashboard')
+      dispatch(authenticateUser(resObject))
+      console.log(resObject)
+    })
+    .catch((err) => {
+      navigate('/SignIn')
+      console.log(err);
+    });
+};
+useEffect(() => {
+  getUser();
+}, []);
+useEffect(()=>{
+  if(state.isAuthenticated===true || accessToken!==null){
+    navigate('/Dashboard')
+  }
+  else{
+    navigate('/SignIn')
+  }
+},[state.isAuthenticated,accessToken])
   return (
     <Routes>
     {/* Authentication Routes */}
@@ -21,7 +60,7 @@ const accessToken = localStorage.getItem("accessToken")
       <Route path="/password-reset/:id/:token" element={<PasswordReset/>}/>
     </Route>
     {/* Dashboard Routes */}
-    { accessToken && <Route path='/Dashboard' element={<UserDashboard/>}>
+    { <Route path='/Dashboard' element={<UserDashboard/>}>
       <Route index element={<Home/>}/>
       <Route path="/Dashboard/Home"  element={<Home/>} />
       <Route path="/Dashboard/Followers"  element={<Followers/>} />

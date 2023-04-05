@@ -5,17 +5,13 @@ const initialState = {
   message: null,
   error:null,
   loading: false,
+  User:{},
+  isAuthenticated:false,
   urlValid:false,
 };
 export const signin = createAsyncThunk('signin',async ({state}) =>{
   const response = await SignIn(state);
-  if(response.accessToken){
-    window.location = '/Dashboard';
   return response;
-  }
-  else{
-    return response;
-  }
 })
 export const signup = createAsyncThunk('signup',async ({state}) =>{
   const response = await SignUp(state);
@@ -41,7 +37,12 @@ export const authSlice = createSlice({
   name: 'authentication',
   initialState,
   reducers: {
-    clearMessage: (state) => state = initialState
+    clearMessage: (state) => state = initialState,
+    authenticateUser: (state,action) =>{
+      state.error = null;
+      state.User = action.payload.user;
+      state.isAuthenticated = action.payload.success;
+    }
   },
   extraReducers: (builder) =>{
     builder
@@ -129,5 +130,5 @@ export const authSlice = createSlice({
 });
 
 export const authstate = (state) => state.auth;
-export const { clearMessage } = authSlice.actions;
+export const { clearMessage,authenticateUser } = authSlice.actions;
 export default authSlice.reducer;

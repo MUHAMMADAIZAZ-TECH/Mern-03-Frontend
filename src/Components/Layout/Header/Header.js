@@ -13,9 +13,9 @@ export default function Header({handleDrawerToggle}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const LogOut = () =>{
-   window.open("http://localhost:8080/auth/logout", "_self");
    dispatch(logout())
    localStorage.clear()
+   window.open("http://localhost:8080/auth/logout", "_self");
   }
   return (
     <AppBar

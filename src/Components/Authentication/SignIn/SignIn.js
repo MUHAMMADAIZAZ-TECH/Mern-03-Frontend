@@ -3,7 +3,8 @@ import { TextInput,CustomButton } from '../../UI-Components/Index';
 import {Typography} from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useDispatch ,useSelector} from 'react-redux';
-import GithubLogo from '../../../Assests/Images/github.png'
+import GithubLogo from '../../../Assests/Images/github.png';
+import GithubButton from 'react-github-login-button'
 import {signin,clearMessage} from '../../../Store/Slicers/Authentication/AuthenticationSlice';
 const SignIn = ()=> {
   const [state,setState] = useState({
@@ -60,10 +61,7 @@ const SignIn = ()=> {
         <br/>
         <Link to="/SignUp">Doesn't have an account?</Link>
         <Link to="/ForgotPassword">Forgot Password?</Link>
-        <div className="loginButton github" onClick={github}>
-            <img src={GithubLogo} alt="" className="icon" />
-            Github
-          </div>
+        <GithubButton onClick={github} />
     </div>
   )
 }
