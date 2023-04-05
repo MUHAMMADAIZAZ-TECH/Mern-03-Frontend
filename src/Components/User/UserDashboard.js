@@ -7,16 +7,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
 const drawerWidth = 240;
 const UserDashboard = ({ window }) =>{
-  const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
- 
   const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
+      <Box sx={{ overflow: 'auto' }}>
       <List>
         {['Home', 'Followers', 'Followings'].map((text, index) => (
            <Link to={text} key={index} style={{
@@ -33,20 +26,19 @@ const UserDashboard = ({ window }) =>{
           </ListItem>
           </Link>))}
       </List>
-    </div>
+      </Box>
   );
-  const container = window !== undefined ? () => window().document.body : undefined;
-  
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-     <Header handleDrawerToggle={handleDrawerToggle}/>
+     <Header/>
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        <Sidebar drawer={drawer} drawerWidth={drawerWidth} container={container} mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}/>
+        <Sidebar drawer={drawer} drawerWidth={drawerWidth}/>
       </Box>
      <Container drawerWidth={drawerWidth} />
     </Box>

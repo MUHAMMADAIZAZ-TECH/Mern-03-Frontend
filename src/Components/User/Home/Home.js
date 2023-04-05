@@ -25,7 +25,7 @@ export const Home = () => {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Box sx={{ height: "80vh"}}>
+      {/* <Box sx={{ height: "80vh"}}>
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} columns={{ xs: 6, md: 12 }}>
         <Grid item xs={6}>
             <div style={{display: "flex",alignSelf: "center",justifyContent: "center",flexDirection: "column",padding: 20,}}>
@@ -47,7 +47,7 @@ export const Home = () => {
             <Userbox user={user} key={index} LoggedInUser={LoggedInUser} />))}</div>
           </Grid>
           </Grid>
-      </Box>
+      </Box> */}
     </React.Fragment>
   );
 };

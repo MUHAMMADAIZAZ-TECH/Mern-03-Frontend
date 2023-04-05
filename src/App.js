@@ -1,4 +1,5 @@
 import './App.css';
+import './Mui.Custom.css'
 import React,{useEffect} from 'react';
 import Auth,{SignIn,SignUp,EmailVerified,ForgotPassword,PasswordReset} from './Components/Authentication/Auth';
 import UserDashboard from './Components/User/UserDashboard';

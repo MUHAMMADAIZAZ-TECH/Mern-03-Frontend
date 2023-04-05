@@ -1,0 +1,32 @@
+.css-ivnu1y-MuiPaper-root-MuiAppBar-root {
+    background-color: var(--ds-surface, #FFFFFF)!important;
+    color: var(--ds-text-subtlest, #6B778C)!important;
+    height: 56px!important;
+    box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 1px 0px 3px 0px rgba(0,0,0,0.12)!important;
+    background: linear-gradient(rgba(9, 30, 66, 0.13) 0px, rgba(9, 30, 66, 0.13) 1px, rgba(9, 30, 66, 0.08) 1px, rgba(9, 30, 66, 0) 4px) !important;
+    content: "";
+}
+.css-12i7wg6-MuiPaper-root-MuiDrawer-paper{
+    top: 56px !important;
+    background-color: var(--ds-surface, #FAFBFC)!important;
+}
+.css-zxdg2z {
+    background: var(--ds-surface,#FFFFFF)!important;
+}
+@media (min-width: 600px){
+    .css-hyum1k-MuiToolbar-root {
+        padding-left: 18px !important;
+
+    }
+}
+@media (min-width: 900px){
+    .css-1t6c9ts {
+        width: 460px!important;
+    }
+}
+
+.css-1fqgpgz-MuiButtonBase-root-MuiButton-root {
+    font-weight: 550 !important;
+    padding: 4px 7px!important;
+    color: var(--ds-text-subtle, #344563)!important;
+}
