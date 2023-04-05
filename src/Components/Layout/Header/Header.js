@@ -13,9 +13,9 @@ export default function Header({handleDrawerToggle}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const LogOut = () =>{
+   window.open("http://localhost:8080/auth/logout", "_self");
    dispatch(logout())
    localStorage.clear()
-   navigate('/')
   }
   return (
     <AppBar
@@ -39,7 +39,7 @@ export default function Header({handleDrawerToggle}) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Instagram
           </Typography>
-          <Button color="inherit" startIcon={ <AccountCircle />} onClick={()=>LogOut()}>Logout</Button>
+          <Button color="inherit" startIcon={ <AccountCircle />} onClick={LogOut}>Logout</Button>
         </Toolbar>
       </AppBar>
   )

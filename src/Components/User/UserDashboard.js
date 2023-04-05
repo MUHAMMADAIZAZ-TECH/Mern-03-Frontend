@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import {Container, Header, Sidebar} from '../Layout/index';
-import React from 'react';
+import React,{useEffect} from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import {Box,CssBaseline,Divider,List,ListItem,ListItemButton,ListItemIcon,ListItemText,Toolbar} from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
@@ -37,6 +38,31 @@ const UserDashboard = ({ window }) =>{
     </div>
   );
   const container = window !== undefined ? () => window().document.body : undefined;
+  async function login() {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: "http://localhost:8080/auth/login/success",
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response)
+      if (response.status === 200) {
+        const resObject = response.data;
+        console.log(resObject);
+      } else {
+        throw new Error("authentication has been failed!");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    login();
+  }, []);
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

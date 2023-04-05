@@ -73,3 +73,22 @@
   flex-direction: column;
   align-items: flex-start;
 }
+.loginButton{
+  width: 150px;
+  padding: 15px 25px;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.github{
+  background-color: black;
+}
+.icon{
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}

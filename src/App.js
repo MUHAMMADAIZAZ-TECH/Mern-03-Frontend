@@ -21,7 +21,7 @@ const accessToken = localStorage.getItem("accessToken")
       <Route path="/password-reset/:id/:token" element={<PasswordReset/>}/>
     </Route>
     {/* Dashboard Routes */}
-    {accessToken && <Route path='/Dashboard' element={<UserDashboard/>}>
+    { accessToken && <Route path='/Dashboard' element={<UserDashboard/>}>
       <Route index element={<Home/>}/>
       <Route path="/Dashboard/Home"  element={<Home/>} />
       <Route path="/Dashboard/Followers"  element={<Followers/>} />
