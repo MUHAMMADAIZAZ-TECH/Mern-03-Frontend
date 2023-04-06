@@ -2,11 +2,8 @@ import React,{useState} from 'react'
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import {AccountCircle} from '@mui/icons-material';
 import { Button,Menu, MenuItem,Box, OutlinedInput, InputAdornment,Avatar  } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { useDispatch,useSelector} from 'react-redux';
 import { logout } from '../../../Store/Slicers/UserSlicer/UserSlicer';
 import Jirasoftware from '../../../Assests/Images/jira-software.png';
 import bellicon from '../../../Assests/Images/bell-icon.png';
@@ -14,33 +11,16 @@ import helpicon from '../../../Assests/Images/help-icon.png';
 import settingicon from '../../../Assests/Images/setting-icon.png';
 import {Apps,Search  } from '@mui/icons-material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import SettingsRoundedIcon from '@mui/icons-material/SettingsApplications';
-const drawerWidth = 240;
-export default function Header({handleDrawerToggle}) {
+export default function Header() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const state = useSelector((state)=>state.auth)
+  const {User} =state;
   const LogOut = () =>{
    dispatch(logout())
    localStorage.clear()
    window.open("http://localhost:8080/auth/logout", "_self");
   }
   const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    // setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    // setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    // setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    // setAnchorElUser(null);
-  };
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -48,7 +28,6 @@ export default function Header({handleDrawerToggle}) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   const pages = ['Your work', 'Projects', 'Filters','Dashboards','Teams','Apps'];
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -61,7 +40,6 @@ export default function Header({handleDrawerToggle}) {
                 style={{textTransform:'none'}}
                 endIcon={<ArrowDropDownIcon/>}
                 key={page}
-                onClick={handleCloseNavMenu}
                 sx={{ my: 2, display: 'flex' }}
               >
                 {page}
@@ -73,7 +51,6 @@ export default function Header({handleDrawerToggle}) {
           <Button variant="contained" size="small">
           Create
         </Button>
-      
         <OutlinedInput
               size='small'
               style={{
@@ -89,7 +66,6 @@ export default function Header({handleDrawerToggle}) {
             />
               
           </Box>
-          
             <img src={bellicon} alt='' className='right-icons'/>
             <img src={helpicon} alt='' className='right-icons'/>
             <img src={settingicon} alt='' className='right-icons'/>
@@ -102,14 +78,13 @@ export default function Header({handleDrawerToggle}) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>{User?.FirstName} {User?.LastName}</MenuItem>
+        <MenuItem onClick={handleClose}>{User?.Email}</MenuItem>
         <MenuItem onClick={()=>{
           handleClose()
           LogOut()
         }}>Logout</MenuItem>
       </Menu>
-          {/* <Button color="inherit" startIcon={ <AccountCircle />} onClick={LogOut}>Logout</Button> */}
         </Toolbar>
       </AppBar>
   )
