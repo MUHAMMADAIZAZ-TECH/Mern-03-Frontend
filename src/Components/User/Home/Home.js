@@ -1,31 +1,44 @@
-import React, { useState,useEffect } from "react";
-import { SearchField, Userbox,Card } from "../../UI-Components/Index";
-import { CssBaseline, Box, Grid,Typography,Button, IconButton,Paper } from "@mui/material";
-import { useDispatch, useSelector } from 'react-redux';
-import {getFollowersAndFollowing,searchHandler} from '../../../Store/Slicers/UserSlicer/UserSlicer';
+import React, { useEffect } from "react";
+import {Card } from "../../UI-Components/Index";
+import { CssBaseline, Box, Grid,Typography,Button, IconButton } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import CachedIcon from '@mui/icons-material/Cached';
 import StarOutlineRoundedIcon from '@mui/icons-material/StarOutlineRounded';
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
+import { getDashboardDetails } from "../../../Store/Slicers/UserSlicer/UserSlicer";
+import { useDispatch,useSelector } from "react-redux";
 export const Home = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const state = useSelector((state) => state.user);
-  const { data, searchedList } = state;
   const dispatch = useDispatch();
-  const LoggedInUser = JSON.parse(localStorage.getItem('user'))
-  
-  useEffect( () =>{
-    dispatch(getFollowersAndFollowing());
-  },[])
-
-  useEffect(()=>{
-    const refreshList = () =>{
-      if(state.loading2===true){
-        dispatch(searchHandler(searchQuery))
-      }
-    }
-    refreshList()
-  },[state.loading2])
+  const state = useSelector((state)=>state.user);
+  const Data =[{
+    Heading:'Introduction',
+    Title:'Welcome to Jira',
+    Text:'Not sure where to start? Check out the Jira 101 guide and Atlassian training course. You can customize this text in the Administration section.',
+    CreatedAt:'1 hour ago'
+  },
+  {
+    Heading:'Introduction',
+    Title:'Title',
+    Text:'Not sure where to start? Check out the Jira 101 guide and Atlassian training course. You can customize this text in the Administration section.',
+    CreatedAt:'1 hour ago'
+  },
+  {
+    Heading:'Introduction',
+    Title:'Title',
+    Text:'Not sure where to start? Check out the Jira 101 guide and Atlassian training course. You can customize this text in the Administration section.',
+    CreatedAt:'1 hour ago'
+  },
+  {
+    Heading:'Introduction',
+    Title:'Title',
+    Text:'Not sure where to start? Check out the Jira 101 guide and Atlassian training course. You can customize this text in the Administration section.',
+    CreatedAt:'1 hour ago'
+  },
+]
+console.log(state.dashboardDetails)
+useEffect(()=>{
+  dispatch(getDashboardDetails())
+},[])
   return (
     <React.Fragment>
       <CssBaseline />
@@ -44,20 +57,8 @@ export const Home = () => {
           </Grid>
         </Grid>
         <Grid container rowSpacing={2}  columns={{ xs: 6, md: 12 }}>
-        <Grid item xs={6}>
-        <Card/>
-          </Grid>
-          <Grid item xs={6} >
-          <Card/>
-          </Grid>
-          <Grid item xs={6} >
-          <Card/>
-          </Grid>
-          <Grid item xs={6} >
-          <Card/>
-          </Grid>
+          {state?.dashboardDetails?.map((Item,index)=><Grid key={index} item xs={6}><Card content={Item}/></Grid>)}
         </Grid>
-
       </Box>
     </React.Fragment>
   );

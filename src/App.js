@@ -29,7 +29,6 @@ const getUser = () => {
     .then((resObject) => {
       navigate('/Dashboard')
       dispatch(authenticateUser(resObject))
-      console.log(resObject)
     })
     .catch((err) => {
       navigate('/SignIn')

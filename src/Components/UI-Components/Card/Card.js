@@ -23,7 +23,7 @@ const Card = ({
     >
       <Paper >
         <div style={{display:"flex",justifyContent:'space-between',}}>
-        <Typography variant="span">Introduction</Typography>
+        <Typography variant="span">{content?.Heading}</Typography>
         <div>
         <IconButton variant="text"><CloseFullscreenRoundedIcon /></IconButton>
         <IconButton variant="text"><CenterFocusWeakRoundedIcon /></IconButton>
@@ -34,13 +34,11 @@ const Card = ({
         paddingLeft:10,
         marginTop: '-20px'
        }}>
-        <h2>Heading</h2>
-        <p>Not sure where to start? Check out the Jira 101 guide and Atlassian training course.
-            You can customize this text in the Administration section.</p>
+        <h2>{content?.Title}</h2>
+        <p>{content?.Text}</p>
        </div>
        {/* <CachedIcon fontSize="small"/> */}
-        <p>1 hour ago</p>
-      {content}
+        <p>{content?.CreatedAt}</p>
       </Paper>
     </Box>
   );
