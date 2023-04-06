@@ -10,32 +10,6 @@ import { useDispatch,useSelector } from "react-redux";
 export const Home = () => {
   const dispatch = useDispatch();
   const state = useSelector((state)=>state.user);
-  const Data =[{
-    Heading:'Introduction',
-    Title:'Welcome to Jira',
-    Text:'Not sure where to start? Check out the Jira 101 guide and Atlassian training course. You can customize this text in the Administration section.',
-    CreatedAt:'1 hour ago'
-  },
-  {
-    Heading:'Introduction',
-    Title:'Title',
-    Text:'Not sure where to start? Check out the Jira 101 guide and Atlassian training course. You can customize this text in the Administration section.',
-    CreatedAt:'1 hour ago'
-  },
-  {
-    Heading:'Introduction',
-    Title:'Title',
-    Text:'Not sure where to start? Check out the Jira 101 guide and Atlassian training course. You can customize this text in the Administration section.',
-    CreatedAt:'1 hour ago'
-  },
-  {
-    Heading:'Introduction',
-    Title:'Title',
-    Text:'Not sure where to start? Check out the Jira 101 guide and Atlassian training course. You can customize this text in the Administration section.',
-    CreatedAt:'1 hour ago'
-  },
-]
-console.log(state.dashboardDetails)
 useEffect(()=>{
   dispatch(getDashboardDetails())
 },[])
