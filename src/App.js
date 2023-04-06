@@ -4,8 +4,6 @@ import React,{useEffect} from 'react';
 import Auth,{SignIn,SignUp,EmailVerified,ForgotPassword,PasswordReset} from './Components/Authentication/Auth';
 import UserDashboard from './Components/User/UserDashboard';
 import { Route,Routes,useNavigate } from 'react-router-dom';
-import Followers from './Components/User/Followers/Followers';
-import Followings from './Components/User/Followings/Followings';
 import Home from './Components/User/Home/Home';
 import { authenticateUser } from './Store/Slicers/Authentication/AuthenticationSlice';
 import { useDispatch,useSelector } from 'react-redux';
@@ -63,9 +61,6 @@ useEffect(()=>{
     {/* Dashboard Routes */}
     { <Route path='/Dashboard' element={<UserDashboard/>}>
       <Route index element={<Home/>}/>
-      <Route path="/Dashboard/Home"  element={<Home/>} />
-      <Route path="/Dashboard/Followers"  element={<Followers/>} />
-      <Route path="/Dashboard/Followings"  element={<Followings/>} />
     </Route>}
   </Routes>
   );
