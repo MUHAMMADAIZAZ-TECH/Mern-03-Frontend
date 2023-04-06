@@ -1,10 +1,10 @@
 import React,{useState,useEffect} from 'react';
 import { TextInput,CustomButton } from '../../UI-Components/Index';
-import {Typography} from '@mui/material';
+import {Typography,Grid} from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useDispatch ,useSelector} from 'react-redux';
-import GithubLogo from '../../../Assests/Images/github.png';
-import GithubButton from 'react-github-login-button'
+import atlassianicon2 from '../../../Assests/Images/Attlassian2.png';
+import { GoogleLoginButton,GithubLoginButton,AppleLoginButton } from "react-social-login-buttons";
 import {signin,clearMessage} from '../../../Store/Slicers/Authentication/AuthenticationSlice';
 const SignIn = ()=> {
   const [state,setState] = useState({
@@ -28,41 +28,60 @@ const SignIn = ()=> {
     }
   },[])
   return (
-    <div className='SignInContainer'>
-    <Typography variant="h4" gutterBottom>
-      Sign In
-    </Typography>
+   <React.Fragment>
+     <h5 className="form-heading"> Log in to continue</h5>
+       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid item xs={12}>
       <TextInput 
           fullWidth 
-          label="Email" 
+          size='small'
           name="Email" 
           type="text" 
+          placeholder="Enter your email"
           value={state.Email} 
           change={HanldeInput} 
           variant="outlined" />
-      <br/>
-        <TextInput 
+      </Grid>
+      <Grid item xs={12}>
+      <TextInput 
             fullWidth 
-            label="Password" 
+            size='small'
             name="Password" 
             type="password" 
+            placeholder="Enter your password"
             value={state.Password}  
             change={HanldeInput}
             variant="outlined"/>
-             <br/>
-        {State.message && <div>{State.message}</div>}
-        <br/>
-        <CustomButton 
+      </Grid>
+      <Grid item xs={12}>
+      <CustomButton 
             variant="contained" 
-            text="Sign In" 
+            text="Continue" 
             size="large"
             fullWidth
             onClick={()=>dispatch(signin({state}))}/>
-        <br/>
-        <Link to="/SignUp">Doesn't have an account?</Link>
-        <Link to="/ForgotPassword">Forgot Password?</Link>
-        <GithubButton onClick={github} />
-    </div>
+      </Grid>
+      <Grid item xs={12} textAlign={'center'}>
+      <span>or Continue with</span>
+      </Grid>
+      <Grid item xs={12}>
+      <GoogleLoginButton align="center" size='40px' />
+      </Grid>
+      <Grid item xs={12}>
+      <AppleLoginButton align="center" size='40px' />
+      </Grid>
+      <Grid item xs={12}>
+      <GithubLoginButton onClick={github} align="center" size='40px' />
+      </Grid>
+    </Grid>
+        {State.message && <div>{State.message}</div>}
+        <div className="signup-text">
+        <Link to="/ForgotPassword">Can't log in?</Link>
+        <Link to="/SignUp" >Doesn't have an account?</Link>
+        </div>
+        <img src={atlassianicon2} height={30} width={160}/>
+        <div className="signup-text">One account for Jira, Confluence, Trello and more.<br/>Privacy Policy • User Notice</div>
+   </React.Fragment>
   )
 }
 

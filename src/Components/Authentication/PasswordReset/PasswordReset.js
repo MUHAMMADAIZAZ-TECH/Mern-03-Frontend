@@ -1,8 +1,7 @@
-import axios from 'axios';
 import React ,{useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom';
 import { TextInput,CustomButton } from '../../UI-Components/Index';
-import {Typography,CssBaseline,Box,Container} from '@mui/material';
+import {Typography,CssBaseline,Box,Container,Grid} from '@mui/material';
 import { verifyresetpasswordurl ,updatenewpassword} from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,35 +15,27 @@ export default function PasswordReset() {
         dispatch(verifyresetpasswordurl(params))
     },[params.id,params.token])
   return (
-    <React.Fragment>{state?.urlValid ?(
+    <React.Fragment>{!state?.urlValid ?(
       <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth="sm">
-        <Box sx={{ height: '50vh' }} >
-        <div className='PasswordResetContainer'>
-        <Typography variant="h4" gutterBottom>
-          Enter New Password
-        </Typography>
-          <TextInput 
+          <h5 className="form-heading"> Enter new password</h5>
+          <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid item xs={12}>
+      <TextInput 
               fullWidth 
-              label="Password" 
+              size={'small'}
               name="Password" 
               type="password" 
+              placeholder={'Enter new password'}
               value={Password} 
               change={HanldeInput} 
               variant="outlined" />
-              <br/>
-            <CustomButton 
-                variant="contained" 
-                text="Sign In" 
-                size="large"
-                fullWidth
-                onClick={()=>dispatch(updatenewpassword({params:params,Password:Password}))}/>
-        </div>
+      </Grid>
+      <Grid item xs={12}>
+      <CustomButton variant="contained" text="create" fullWidth onClick={()=>dispatch(updatenewpassword({params:params,Password:Password}))}/>
+      </Grid>
+      </Grid>
         {state.error && <div>Error:{state.error}</div>}
         {state.message && <div>Message:{state.message}</div>}
-        </Box>
-      </Container>
     </React.Fragment>
   ):(
       <div><h1>404 Not Found</h1></div>

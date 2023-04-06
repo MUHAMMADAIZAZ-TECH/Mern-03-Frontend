@@ -15,9 +15,7 @@ export default function EmailVerified() {
       {state?.urlValid ? (
         <div>
           <h2>Email Verified Successfully</h2>
-          <Link to="/SignIn">
-            <CustomButton text={"SignIn"}></CustomButton>
-          </Link>
+          <Link to="/SignIn" className="signup-text"> <CustomButton variant="contained" text="log in" size="large"fullWidth/></Link>
         </div>
       ) : (
         <h2>404 Not Found</h2>

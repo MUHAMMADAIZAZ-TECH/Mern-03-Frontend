@@ -24,7 +24,8 @@ const TextInput = ({
   name,
   variant,
   color,
-  onInput
+  onInput,
+  height
 })=> {
   return (
     
@@ -35,7 +36,7 @@ const TextInput = ({
         name={name && name}
         onChange={change}
         onInput={onInput}
-        style={{ width: `${width}`, margin: `${margin}`,backgroundColor:`${color}` }}
+        style={{ width: `${width}`, margin: `${margin}`,backgroundColor:`${color}`,height:`${height}` }}
         placeholder={placeholder && placeholder}
         rows={rows}
         multiline={multiline}
