@@ -1,5 +1,6 @@
 import "./App.css";
 import "./Mui.Custom.css";
+import axios from "axios";
 import React, { useEffect } from "react";
 import Auth, {
   SignIn,
@@ -18,28 +19,20 @@ function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
-  const getUser = () => {
-    fetch("http://localhost:8080/auth/login/success", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-      },
-    })
-      .then((response) => {
-        if (response.status === 200) return response.json();
-        throw new Error("authentication has been failed!");
-      })
-      .then((resObject) => {
+  const getUser = async () => {
+    try {
+      const response = await axios.get("auth/login/success");
+      if (response.status === 200) {
+        const resObject = response.data;
         navigate("/Dashboard");
         dispatch(authenticateUser(resObject));
-      })
-      .catch((err) => {
-        navigate("/SignIn");
-        console.log(err);
-      });
+      } else {
+        throw new Error("authentication has been failed!");
+      }
+    } catch (err) {
+      console.log(err);
+      navigate("/SignIn");
+    }
   };
   useEffect(() => {
     getUser();

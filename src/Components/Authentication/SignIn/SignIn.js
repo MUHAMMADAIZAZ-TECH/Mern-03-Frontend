@@ -5,7 +5,7 @@ import { TextInput, CustomButton } from "../../UI-Components/Index";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {Image3} from "../../../Assests/Images/index";
+import { Image3 } from "../../../Assests/Images/index";
 import {
   GoogleLoginButton,
   GithubLoginButton,

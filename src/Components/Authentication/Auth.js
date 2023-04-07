@@ -4,7 +4,7 @@ import SignUp from "./SignUp/SignUp";
 import EmailVerified from "./EmailVerified/EmailVerified";
 import ForgotPassword from "./ForgotPassword/ForgotPassword";
 import PasswordReset from "./PasswordReset/PasswordReset";
-import {Image1} from "../../Assests/Images/index";
+import { Image1 } from "../../Assests/Images/index";
 import { Outlet } from "react-router-dom";
 import { CssBaseline, Box, Container } from "@mui/material";
 function Auth() {

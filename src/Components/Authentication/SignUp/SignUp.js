@@ -9,7 +9,7 @@ import {
   clearMessage,
 } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { GithubLoginButton } from "react-social-login-buttons";
-import {Image3} from "../../../Assests/Images/index";
+import { Image3 } from "../../../Assests/Images/index";
 import { Link } from "react-router-dom";
 const SignUp = () => {
   const validationSchema = Yup.object().shape({

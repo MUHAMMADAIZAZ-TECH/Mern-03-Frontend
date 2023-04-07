@@ -1,9 +1,6 @@
 import axios from "axios";
-const LoggedInUser = JSON.parse(localStorage.getItem("user"));
-const token = localStorage.getItem("accessToken");
 axios.defaults.baseURL = "http://localhost:8080/";
 axios.defaults.withCredentials = true;
-// axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 export const SignIn = async (state) => {
   try {
     const response = await axios.post(`signin`, state);

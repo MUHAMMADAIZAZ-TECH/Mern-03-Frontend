@@ -1,6 +1,5 @@
-import IconButton from "@mui/material/IconButton";
+import { IconButton, TextInput } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import TextInput from "./TextField";
 import React from "react";
 const SearchBar = ({ setSearchQuery, searchHandler }) => (
   <div>

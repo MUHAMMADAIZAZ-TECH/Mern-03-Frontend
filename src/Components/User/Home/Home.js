@@ -1,6 +1,14 @@
 import React, { useEffect } from "react";
 import { Card } from "../../UI-Components/Index";
 import {
+  Edit,
+  Cached,
+  StarOutlineRounded,
+  MoreHorizRounded,
+} from "@mui/icons-material/";
+import { getDashboardDetails } from "../../../Store/Slicers/UserSlicer/UserSlicer";
+import { useDispatch, useSelector } from "react-redux";
+import {
   CssBaseline,
   Box,
   Grid,
@@ -8,19 +16,13 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import CachedIcon from "@mui/icons-material/Cached";
-import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
-import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
-import { getDashboardDetails } from "../../../Store/Slicers/UserSlicer/UserSlicer";
-import { useDispatch, useSelector } from "react-redux";
 export const Home = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(getDashboardDetails());
   }, []);
- 
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -42,18 +44,18 @@ export const Home = () => {
               <Typography variant="h5">Default dashboard</Typography>
               <div>
                 <IconButton variant="text">
-                  <StarOutlineRoundedIcon />
+                  <StarOutlineRounded />
                 </IconButton>
-                <Button variant="text" endIcon={<CachedIcon />}>
+                <Button variant="text" endIcon={<Cached />}>
                   {" "}
                   Refresh
                 </Button>
-                <Button variant="text" endIcon={<EditIcon />}>
+                <Button variant="text" endIcon={<Edit />}>
                   {" "}
                   Edit
                 </Button>
                 <IconButton variant="text">
-                  <MoreHorizRoundedIcon />
+                  <MoreHorizRounded />
                 </IconButton>
               </div>
             </div>

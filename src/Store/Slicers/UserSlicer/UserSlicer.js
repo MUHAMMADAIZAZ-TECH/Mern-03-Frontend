@@ -11,12 +11,12 @@ const initialState = {
   loading: false,
   dashboardDetails: null,
   error: null,
-}
+};
 const userSlice = createSlice({
   name: "user",
-  initialState:initialState ,
+  initialState: initialState,
   reducers: {
-    clearallstates: (state) => state = initialState
+    clearallstates: (state) => (state = initialState),
   },
   extraReducers: (builder) => {
     builder

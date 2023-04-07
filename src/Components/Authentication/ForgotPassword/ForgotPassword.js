@@ -9,7 +9,7 @@ import {
 } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {Image3} from "../../../Assests/Images/index";
+import { Image3 } from "../../../Assests/Images/index";
 
 export default function ForgotPassword() {
   const dispatch = useDispatch();

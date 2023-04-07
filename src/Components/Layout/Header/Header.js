@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import IconButton from "@mui/material/IconButton";
-import Toolbar from "@mui/material/Toolbar";
+import { useDispatch, useSelector } from "react-redux";
+import { clearallstates } from "../../../Store/Slicers/UserSlicer/UserSlicer";
+import { Image4, Image6, Image7, Image8 } from "../../../Assests/Images/index";
+import { Apps, Search, ArrowDropDown } from "@mui/icons-material";
 import {
   Button,
   Menu,
@@ -10,20 +11,17 @@ import {
   OutlinedInput,
   InputAdornment,
   Avatar,
+  Toolbar,
+  AppBar,
+  IconButton,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { clearallstates } from "../../../Store/Slicers/UserSlicer/UserSlicer";
-import {Image4,Image6,Image7,Image8} from "../../../Assests/Images/index";
-import { Apps, Search ,ArrowDropDown} from "@mui/icons-material";
 export default function Header() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
   const { User } = state;
-  console.log(state)
   const LogOut = () => {
     localStorage.clear();
     window.open("http://localhost:8080/auth/logout", "_self");
-    
   };
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
@@ -41,11 +39,11 @@ export default function Header() {
     "Teams",
     "Apps",
   ];
-  useEffect(()=>{
-    return()=>{
+  useEffect(() => {
+    return () => {
       dispatch(clearallstates());
-    }
-  },[])
+    };
+  }, []);
   return (
     <AppBar
       position="fixed"
