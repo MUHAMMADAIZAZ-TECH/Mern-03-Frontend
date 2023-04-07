@@ -1,9 +1,12 @@
-import React ,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { TextInput, CustomButton } from "../../UI-Components/Index";
 import { Grid } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { resetpassword,clearMessage } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
+import {
+  resetpassword,
+  clearMessage,
+} from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import atlassianicon2 from "../../../Assests/Images/Attlassian2.png";
@@ -12,7 +15,9 @@ export default function ForgotPassword() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
   const validationSchema = Yup.object({
-    Email: Yup.string().email("Please enter valid email address").required("Email is required"),
+    Email: Yup.string()
+      .email("Please enter valid email address")
+      .required("Email is required"),
   });
   const formik = useFormik({
     initialValues: {
@@ -24,10 +29,10 @@ export default function ForgotPassword() {
     },
   });
   useEffect(() => {
-    return()=>{
-      dispatch(clearMessage())
-    }
-  },[]);
+    return () => {
+      dispatch(clearMessage());
+    };
+  }, []);
   return (
     <React.Fragment>
       <h5 className="form-heading"> Can't log in?</h5>

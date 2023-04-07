@@ -1,67 +1,76 @@
-*{
-    text-transform: none!important;
-    /* color: var(--ds-text-subtle, #344563) */
+* {
+  text-transform: none !important;
+  /* color: var(--ds-text-subtle, #344563) */
 }
 .css-ivnu1y-MuiPaper-root-MuiAppBar-root {
-    background-color: var(--ds-surface, #FFFFFF)!important;
-    color: var(--ds-text-subtlest, #6B778C)!important;
-    height: 56px!important;
-    box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 1px 0px 3px 0px rgba(0,0,0,0.12)!important;
-    background: linear-gradient(rgba(9, 30, 66, 0.13) 0px, rgba(9, 30, 66, 0.13) 1px, rgba(9, 30, 66, 0.08) 1px, rgba(9, 30, 66, 0) 4px) !important;
-    content: "";
+  background-color: var(--ds-surface, #ffffff) !important;
+  color: var(--ds-text-subtlest, #6b778c) !important;
+  height: 56px !important;
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2),
+    0px 0px 0px 0px rgba(0, 0, 0, 0.14), 1px 0px 3px 0px rgba(0, 0, 0, 0.12) !important;
+  background: linear-gradient(
+    rgba(9, 30, 66, 0.13) 0px,
+    rgba(9, 30, 66, 0.13) 1px,
+    rgba(9, 30, 66, 0.08) 1px,
+    rgba(9, 30, 66, 0) 4px
+  ) !important;
+  content: "";
 }
-.css-1e6y48t-MuiButtonBase-root-MuiButton-root{
-    color: unset!important;
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  color: unset !important;
 }
-.css-12i7wg6-MuiPaper-root-MuiDrawer-paper{
-    top: 56px !important;
-    background-color: var(--ds-surface, #FAFBFC)!important;
+.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+  top: 56px !important;
+  background-color: var(--ds-surface, #fafbfc) !important;
 }
 .css-zxdg2z {
-    background: var(--ds-surface,#FFFFFF)!important;
+  background: var(--ds-surface, #ffffff) !important;
 }
-@media (min-width: 600px){
-    .css-hyum1k-MuiToolbar-root {
-        padding-left: 18px !important;
-        min-height: 40px!important;
-    }
+@media (min-width: 600px) {
+  .css-hyum1k-MuiToolbar-root {
+    padding-left: 18px !important;
+    min-height: 40px !important;
+  }
 }
-@media (min-width: 900px){
-    .css-1t6c9ts {
-        width: 220px!important
-    }
+@media (min-width: 900px) {
+  .css-1t6c9ts {
+    width: 220px !important;
+  }
 }
 
 .css-1fqgpgz-MuiButtonBase-root-MuiButton-root {
-    font-weight: 550 !important;
-    padding: 4px 7px!important;
-    color: var(--ds-text-subtle, #344563)!important;
+  font-weight: 550 !important;
+  padding: 4px 7px !important;
+  color: var(--ds-text-subtle, #344563) !important;
 }
-.right-icons{
-    margin: 0px 5px 0px 5px;
+.right-icons {
+  margin: 0px 5px 0px 5px;
 }
-.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper{
-    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0), 0px 8px 10px 1px rgba(0,0,0,0), 0px 0px 0px 2px rgba(0,0,0,0.12) !important;
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0),
+    0px 8px 10px 1px rgba(0, 0, 0, 0), 0px 0px 0px 2px rgba(0, 0, 0, 0.12) !important;
 }
-span,h5,h2{
-    font-weight: 550 ;
+span,
+h5,
+h2 {
+  font-weight: 550;
 }
-p{
-    font-size: small;
+p {
+  font-size: small;
 }
 .auth {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: rgb(250, 251, 252);
-    background-image: url(https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.431/static/media/default_left.e74de3ec.svg), 
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: rgb(250, 251, 252);
+  background-image: url(https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.431/static/media/default_left.e74de3ec.svg),
     url(https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.431/static/media/default_right.6ece9751.svg);
-    background-repeat: no-repeat, no-repeat;
-    background-attachment: fixed, fixed;
-    background-size: 368px, 368px;
-    background-position: left bottom, right bottom;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
+  background-size: 368px, 368px;
+  background-position: left bottom, right bottom;
 }
-.css-qwfiov-MuiGrid-root>.MuiGrid-item {
-    padding-top: 16px!important;
+.css-qwfiov-MuiGrid-root > .MuiGrid-item {
+  padding-top: 16px !important;
 }

@@ -37,7 +37,7 @@
   }
 }
 
-.SignInContainer{
+.SignInContainer {
   border-radius: 15px;
   box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 19%);
   padding: 120px 50px;
@@ -46,7 +46,7 @@
   flex-direction: column;
   align-items: flex-start;
 }
-.auth-form{
+.auth-form {
   display: flex;
   flex-direction: column;
   margin: 40px auto;
@@ -59,7 +59,7 @@
   color: rgb(94, 108, 132);
   align-items: center;
 }
-.ForgotPasswordContainer{
+.ForgotPasswordContainer {
   border-radius: 15px;
   box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 19%);
   padding: 50px 50px;
@@ -68,7 +68,7 @@
   flex-direction: column;
   align-items: flex-start;
 }
-.PasswordResetContainer{
+.PasswordResetContainer {
   border-radius: 15px;
   box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 19%);
   padding: 50px 50px;
@@ -77,7 +77,7 @@
   flex-direction: column;
   align-items: flex-start;
 }
-.loginButton{
+.loginButton {
   width: 150px;
   padding: 15px 25px;
   border-radius: 5px;
@@ -88,21 +88,21 @@
   margin-bottom: 20px;
   cursor: pointer;
 }
-.github{
+.github {
   background-color: black;
 }
-.icon{
+.icon {
   width: 20px;
   height: 20px;
   margin-right: 10px;
 }
-.form-heading{
+.form-heading {
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
   color: rgb(23, 43, 77);
 }
-.signup-text{
+.signup-text {
   font-size: 12px;
   margin: 10px 0px 10px 0px;
 }

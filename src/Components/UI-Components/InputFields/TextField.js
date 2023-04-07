@@ -1,5 +1,5 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
+import * as React from "react";
+import TextField from "@mui/material/TextField";
 
 const TextInput = ({
   ref,
@@ -26,36 +26,40 @@ const TextInput = ({
   color,
   onInput,
   height,
-  onBlur
-})=> {
+  onBlur,
+}) => {
   return (
-    
-       <TextField
-        ref={ref && ref}
-        id={id && id}
-        onFocus={focus}
-        name={name && name}
-        onChange={change}
-        onInput={onInput}
-        style={{ width: `${width}`, margin: `${margin}`,backgroundColor:`${color}`,height:`${height}` }}
-        placeholder={placeholder && placeholder}
-        rows={rows}
-        multiline={multiline}
-        autoFocus={focus}
-        value={value === null ? "" : value}
-        fullWidth={fullWidth}
-        label={label}
-        variant={variant}
-        size={size}
-        helperText={error && helper}
-        error={error}
-        type={type}
-        disabled={disable}
-        required={required}
-        onBlur={onBlur}
-        inputProps={{ maxLength: textLength }}
-      />
+    <TextField
+      ref={ref && ref}
+      id={id && id}
+      onFocus={focus}
+      name={name && name}
+      onChange={change}
+      onInput={onInput}
+      style={{
+        width: `${width}`,
+        margin: `${margin}`,
+        backgroundColor: `${color}`,
+        height: `${height}`,
+      }}
+      placeholder={placeholder && placeholder}
+      rows={rows}
+      multiline={multiline}
+      autoFocus={focus}
+      value={value === null ? "" : value}
+      fullWidth={fullWidth}
+      label={label}
+      variant={variant}
+      size={size}
+      helperText={error && helper}
+      error={error}
+      type={type}
+      disabled={disable}
+      required={required}
+      onBlur={onBlur}
+      inputProps={{ maxLength: textLength }}
+    />
   );
-}
+};
 
 export default TextInput;

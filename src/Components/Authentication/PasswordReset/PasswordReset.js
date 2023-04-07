@@ -5,7 +5,7 @@ import { Grid } from "@mui/material";
 import {
   verifyresetpasswordurl,
   updatenewpassword,
-  clearMessage
+  clearMessage,
 } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
@@ -45,9 +45,9 @@ export default function PasswordReset() {
 
   useEffect(() => {
     dispatch(verifyresetpasswordurl(params));
-    return()=>{
-      dispatch(clearMessage())
-    }
+    return () => {
+      dispatch(clearMessage());
+    };
   }, [params.id, params.token]);
   return (
     <React.Fragment>
@@ -61,17 +61,20 @@ export default function PasswordReset() {
           >
             <Grid item xs={12}>
               <TextInput
-                 fullWidth 
-                 size={'small'}
-                 name="password" 
-                 type="password" 
-                 placeholder={'Enter new password'}
-                 value={formik.values.password} 
-                 change={formik.handleChange} 
-                 onBlur={formik.handleBlur}
-                 error={formik.touched.password && Boolean(formik.errors.password)}
-                 helper={formik.touched.password && formik.errors.password}
-                 variant="outlined" />
+                fullWidth
+                size={"small"}
+                name="password"
+                type="password"
+                placeholder={"Enter new password"}
+                value={formik.values.password}
+                change={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                helper={formik.touched.password && formik.errors.password}
+                variant="outlined"
+              />
             </Grid>
             <Grid item xs={12}>
               <TextInput
@@ -83,8 +86,14 @@ export default function PasswordReset() {
                 value={formik.values.confirmPassword}
                 change={formik.handleChange}
                 onBlur={formik.handleBlur}
-                error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
-                helper={formik.touched.confirmPassword &&formik.errors.confirmPassword}
+                error={
+                  formik.touched.confirmPassword &&
+                  Boolean(formik.errors.confirmPassword)
+                }
+                helper={
+                  formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword
+                }
                 variant="outlined"
               />
             </Grid>
