@@ -9,7 +9,7 @@ import {
 } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import atlassianicon2 from "../../../Assests/Images/Attlassian2.png";
+import {Image3} from "../../../Assests/Images/index";
 
 export default function ForgotPassword() {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ export default function ForgotPassword() {
       <Link to={"/SignIn"} className="signup-text">
         Return to log in
       </Link>
-      <img src={atlassianicon2} height={30} width={160} />
+      <img src={Image3} height={30} width={160} />
       <div className="signup-text">
         One account for Jira, Confluence, Trello and more.
       </div>

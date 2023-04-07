@@ -13,12 +13,8 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../Store/Slicers/UserSlicer/UserSlicer";
-import Jirasoftware from "../../../Assests/Images/jira-software.png";
-import bellicon from "../../../Assests/Images/bell-icon.png";
-import helpicon from "../../../Assests/Images/help-icon.png";
-import settingicon from "../../../Assests/Images/setting-icon.png";
-import { Apps, Search } from "@mui/icons-material";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import {Image4,Image6,Image7,Image8} from "../../../Assests/Images/index";
+import { Apps, Search ,ArrowDropDownIcon} from "@mui/icons-material";
 export default function Header() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
@@ -53,7 +49,7 @@ export default function Header() {
         <Apps
           sx={{ display: { xs: "none", md: "flex" }, mr: 1, fontSize: 25 }}
         />
-        <img src={Jirasoftware} alt="" />
+        <img src={Image6} alt="" />
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
           {pages.map((page) => (
             <Button
@@ -93,9 +89,9 @@ export default function Header() {
             }
           />
         </Box>
-        <img src={bellicon} alt="" className="right-icons" />
-        <img src={helpicon} alt="" className="right-icons" />
-        <img src={settingicon} alt="" className="right-icons" />
+        <img src={Image4} alt="" className="right-icons" />
+        <img src={Image8} alt="" className="right-icons" />
+        <img src={Image7} alt="" className="right-icons" />
         <IconButton onClick={handleClick}>
           <Avatar
             alt="John Doe"

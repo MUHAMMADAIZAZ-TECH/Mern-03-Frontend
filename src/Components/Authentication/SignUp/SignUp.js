@@ -9,7 +9,7 @@ import {
   clearMessage,
 } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { GithubLoginButton } from "react-social-login-buttons";
-import atlassianicon2 from "../../../Assests/Images/Attlassian2.png";
+import {Image3} from "../../../Assests/Images/index";
 import { Link } from "react-router-dom";
 const SignUp = () => {
   const validationSchema = Yup.object().shape({
@@ -143,7 +143,7 @@ const SignUp = () => {
       <Link to="/SignIn" className="signup-text">
         Already have an Atlassian account? Log in
       </Link>
-      <img src={atlassianicon2} height={30} width={160} />
+      <img src={Image3} height={30} width={160} />
       <div className="signup-text">
         One account for Jira, Confluence, Trello and more. This page is
         protected by reCAPTCHA and the Google Privacy Policy and Terms of

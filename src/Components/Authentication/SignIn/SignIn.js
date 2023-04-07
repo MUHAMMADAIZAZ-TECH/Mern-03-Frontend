@@ -5,7 +5,7 @@ import { TextInput, CustomButton } from "../../UI-Components/Index";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import atlassianicon2 from "../../../Assests/Images/Attlassian2.png";
+import {Image3} from "../../../Assests/Images/index";
 import {
   GoogleLoginButton,
   GithubLoginButton,
@@ -110,7 +110,7 @@ const SignIn = () => {
         <Link to="/ForgotPassword">Can't log in?</Link>
         <Link to="/SignUp">Doesn't have an account?</Link>
       </div>
-      <img src={atlassianicon2} height={30} width={160} />
+      <img src={Image3} height={30} width={160} />
       <div className="signup-text">
         One account for Jira, Confluence, Trello and more.
         <br />
