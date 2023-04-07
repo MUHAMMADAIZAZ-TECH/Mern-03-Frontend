@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,17 +12,18 @@ import {
   Avatar,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../Store/Slicers/UserSlicer/UserSlicer";
+import { clearallstates } from "../../../Store/Slicers/UserSlicer/UserSlicer";
 import {Image4,Image6,Image7,Image8} from "../../../Assests/Images/index";
-import { Apps, Search ,ArrowDropDownIcon} from "@mui/icons-material";
+import { Apps, Search ,ArrowDropDown} from "@mui/icons-material";
 export default function Header() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
   const { User } = state;
+  console.log(state)
   const LogOut = () => {
-    dispatch(logout());
     localStorage.clear();
     window.open("http://localhost:8080/auth/logout", "_self");
+    
   };
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
@@ -40,6 +41,11 @@ export default function Header() {
     "Teams",
     "Apps",
   ];
+  useEffect(()=>{
+    return()=>{
+      dispatch(clearallstates());
+    }
+  },[])
   return (
     <AppBar
       position="fixed"
@@ -54,7 +60,7 @@ export default function Header() {
           {pages.map((page) => (
             <Button
               style={{ textTransform: "none" }}
-              endIcon={<ArrowDropDownIcon />}
+              endIcon={<ArrowDropDown />}
               key={page}
               sx={{ my: 2, display: "flex" }}
             >

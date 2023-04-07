@@ -20,6 +20,7 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getDashboardDetails());
   }, []);
+ 
   return (
     <React.Fragment>
       <CssBaseline />

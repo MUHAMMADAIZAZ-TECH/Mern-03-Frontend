@@ -1,25 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { GetDashboardDetails } from "../../apis";
 export const getDashboardDetails = createAsyncThunk(
-  "getfollower/getfollowing",
+  "get/dashboardcontent",
   async () => {
     const response = await GetDashboardDetails();
     return response.data;
   }
 );
+const initialState = {
+  loading: false,
+  dashboardDetails: null,
+  error: null,
+}
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    loading: false,
-    dashboardDetails: null,
-    error: null,
-  },
+  initialState:initialState ,
   reducers: {
-    logout: (state) => {
-      state.data = null;
-      state.error = false;
-      state.loading = false;
-    },
+    clearallstates: (state) => state = initialState
   },
   extraReducers: (builder) => {
     builder
@@ -37,5 +34,5 @@ const userSlice = createSlice({
       });
   },
 });
-export const { logout } = userSlice.actions;
+export const { clearallstates } = userSlice.actions;
 export default userSlice.reducer;

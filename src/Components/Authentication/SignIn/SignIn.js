@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { TextInput, CustomButton } from "../../UI-Components/Index";
@@ -42,12 +42,6 @@ const SignIn = () => {
   const github = () => {
     window.open("http://localhost:8080/auth/github", "_self");
   };
-  useEffect(() => {
-    return () => {
-      dispatch(clearMessage());
-    };
-  }, []);
-
   return (
     <React.Fragment>
       <h5 className="form-heading"> Log in to continue</h5>
