@@ -25,7 +25,8 @@ const TextInput = ({
   variant,
   color,
   onInput,
-  height
+  height,
+  onBlur
 })=> {
   return (
     
@@ -51,6 +52,7 @@ const TextInput = ({
         type={type}
         disabled={disable}
         required={required}
+        onBlur={onBlur}
         inputProps={{ maxLength: textLength }}
       />
   );

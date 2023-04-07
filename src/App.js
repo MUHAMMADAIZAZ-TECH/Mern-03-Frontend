@@ -39,18 +39,18 @@ useEffect(() => {
   getUser();
 }, []);
 useEffect(()=>{
-  // if(state.isAuthenticated===true || accessToken!==null){
-  //   navigate('/Dashboard')
-  // }
-  // else{
-  //   navigate('/SignIn')
-  // }
+  if(state.isAuthenticated===true || accessToken!==null){
+    navigate('/Dashboard')
+  }
+  else{
+    navigate('/SignIn')
+  }
 },[state.isAuthenticated,accessToken])
   return (
     <Routes>
     {/* Authentication Routes */}
     <Route path='/' element={<Auth/>}>
-      <Route index element={<PasswordReset/>}/>
+      <Route index element={<SignIn/>}/>
       <Route path='/SignIn' index element={<SignIn/>}/>
       <Route path='/SignUp' element={<SignUp/>}/>
       <Route path=":id/verify/:token" element={<EmailVerified/>}/>
