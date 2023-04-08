@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { TextInput, CustomButton } from "../../UI-Components/Index";
 import { Grid } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {
-  resetpassword,
-  clearMessage,
-} from "../../../Store/Slicers/Authentication/AuthenticationSlice";
+import { resetpassword } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Image3 } from "../../../Assests/Images/index";
@@ -62,7 +59,7 @@ export default function ForgotPassword() {
       <Link to={"/SignIn"} className="signup-text">
         Return to log in
       </Link>
-      <img src={Image3} height={30} width={160} />
+      <img src={Image3} height={30} width={160} alt="" />
       <div className="signup-text">
         One account for Jira, Confluence, Trello and more.
       </div>

@@ -14,7 +14,7 @@ function Auth() {
       <Container maxWidth="sm">
         <Box sx={{ height: "90vh" }}>
           <div className="auth-form">
-            <img src={Image1} height={45} width={260} />
+            <img src={Image1} height={45} width={260} alt="" />
             <Outlet />
           </div>
         </Box>

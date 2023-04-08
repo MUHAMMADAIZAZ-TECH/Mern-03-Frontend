@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { TextInput, CustomButton } from "../../UI-Components/Index";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid } from "@mui/material";
-import {
-  signup,
-  clearMessage,
-} from "../../../Store/Slicers/Authentication/AuthenticationSlice";
+import { signup } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { GithubLoginButton } from "react-social-login-buttons";
 import { Image3 } from "../../../Assests/Images/index";
 import { Link } from "react-router-dom";
@@ -138,7 +135,7 @@ const SignUp = () => {
       <Link to="/SignIn" className="signup-text">
         Already have an Atlassian account? Log in
       </Link>
-      <img src={Image3} height={30} width={160} />
+      <img src={Image3} height={30} width={160} alt="" />
       <div className="signup-text">
         One account for Jira, Confluence, Trello and more. This page is
         protected by reCAPTCHA and the Google Privacy Policy and Terms of

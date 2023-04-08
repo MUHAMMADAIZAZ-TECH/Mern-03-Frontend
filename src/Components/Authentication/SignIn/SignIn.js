@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {
-  TextInput,
-  CustomButton,
-  CustomSnackbar,
-} from "../../UI-Components/Index";
+import { TextInput, CustomButton } from "../../UI-Components/Index";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Image3 } from "../../../Assests/Images/index";
 import {
   GoogleLoginButton,
@@ -107,7 +103,7 @@ const SignIn = () => {
         <Link to="/ForgotPassword">Can't log in?</Link>
         <Link to="/SignUp">Doesn't have an account?</Link>
       </div>
-      <img src={Image3} height={30} width={160} />
+      <img src={Image3} height={30} width={160} alt="" />
       <div className="signup-text">
         One account for Jira, Confluence, Trello and more.
         <br />

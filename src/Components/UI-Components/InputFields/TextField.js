@@ -15,8 +15,6 @@ const TextInput = ({
   helper,
   error,
   fullWidth,
-  multiline,
-  rows,
   placeholder,
   textLength,
   margin,
@@ -43,8 +41,6 @@ const TextInput = ({
         height: `${height}`,
       }}
       placeholder={placeholder && placeholder}
-      rows={rows}
-      multiline={multiline}
       autoFocus={focus}
       value={value === null ? "" : value}
       fullWidth={fullWidth}
