@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { TextInput, CustomButton } from "../../UI-Components/Index";
+import {
+  TextInput,
+  CustomButton,
+  CustomSnackbar,
+} from "../../UI-Components/Index";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,10 +15,8 @@ import {
   GithubLoginButton,
   AppleLoginButton,
 } from "react-social-login-buttons";
-import {
-  signin,
-  clearMessage,
-} from "../../../Store/Slicers/Authentication/AuthenticationSlice";
+import { signin } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
+import { resetuserstates } from "../../../Store/Slicers/UserSlicer/UserSlicer";
 const SignIn = () => {
   const validationSchema = Yup.object({
     Email: Yup.string()
@@ -27,7 +29,6 @@ const SignIn = () => {
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
       ),
   });
-  const State = useSelector((state) => state.auth);
   const formik = useFormik({
     initialValues: {
       Email: "",
@@ -42,6 +43,9 @@ const SignIn = () => {
   const github = () => {
     window.open("http://localhost:8080/auth/github", "_self");
   };
+  useEffect(() => {
+    dispatch(resetuserstates());
+  }, []);
   return (
     <React.Fragment>
       <h5 className="form-heading"> Log in to continue</h5>
@@ -83,7 +87,7 @@ const SignIn = () => {
             size="large"
             fullWidth
             onClick={formik.handleSubmit}
-            disableBtn={!formik.isValid || formik.isSubmitting}
+            disableBtn={!formik.isValid && formik.isSubmitting}
           />
         </Grid>
         <Grid item xs={12} textAlign={"center"}>
@@ -99,7 +103,6 @@ const SignIn = () => {
           <GithubLoginButton onClick={github} align="center" size="40px" />
         </Grid>
       </Grid>
-      {State.message && <div>{State.message}</div>}
       <div className="signup-text">
         <Link to="/ForgotPassword">Can't log in?</Link>
         <Link to="/SignUp">Doesn't have an account?</Link>

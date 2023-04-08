@@ -45,9 +45,6 @@ export default function PasswordReset() {
 
   useEffect(() => {
     dispatch(verifyresetpasswordurl(params));
-    return () => {
-      dispatch(clearMessage());
-    };
   }, [params.id, params.token]);
   return (
     <React.Fragment>
@@ -103,7 +100,7 @@ export default function PasswordReset() {
                 text="Confirm"
                 fullWidth
                 onClick={formik.handleSubmit}
-                disableBtn={!formik.isValid || formik.isSubmitting}
+                disableBtn={!formik.isValid && formik.isSubmitting}
               />
             </Grid>
           </Grid>

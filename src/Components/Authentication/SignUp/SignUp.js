@@ -50,11 +50,6 @@ const SignUp = () => {
   const github = () => {
     window.open("http://localhost:8080/auth/github", "_self");
   };
-  useEffect(() => {
-    return () => {
-      dispatch(clearMessage());
-    };
-  }, []);
 
   return (
     <React.Fragment>
@@ -132,7 +127,7 @@ const SignUp = () => {
             size="large"
             fullWidth
             onClick={formik.handleSubmit}
-            disableBtn={!formik.isValid || formik.isSubmitting}
+            disableBtn={!formik.isValid && formik.isSubmitting}
           />
         </Grid>
         <Grid item xs={12}>

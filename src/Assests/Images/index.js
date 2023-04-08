@@ -6,4 +6,15 @@ import Image5 from "./github.png";
 import Image6 from "./jira-software.png";
 import Image7 from "./setting-icon.png";
 import Image8 from "./help-icon.png";
-export { Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8 };
+import NotFound from "./Not-found.jpg";
+export {
+  Image1,
+  Image2,
+  Image3,
+  Image4,
+  Image5,
+  Image6,
+  Image7,
+  Image8,
+  NotFound,
+};

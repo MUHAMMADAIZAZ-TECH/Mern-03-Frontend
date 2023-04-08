@@ -1,5 +1,3 @@
-import "./App.css";
-import "./Mui.Custom.css";
 import axios from "axios";
 import React, { useEffect } from "react";
 import Auth, {
@@ -9,13 +7,13 @@ import Auth, {
   ForgotPassword,
   PasswordReset,
 } from "./Components/Authentication/Auth";
-import UserDashboard from "./Components/User/UserDashboard";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import Home from "./Components/User/Home/Home";
+import UserDashboard from "./Components/Dashboard/UserDashboard";
+import { CustomSnackbar } from "./Components/UI-Components/Index";
+import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
+import { Home, NotFoundPage } from "./Components/Pages";
 import { authenticateUser } from "./Store/Slicers/Authentication/AuthenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
 function App() {
-  const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
@@ -34,34 +32,42 @@ function App() {
       navigate("/SignIn");
     }
   };
+  useEffect(() => getUser(), []);
   useEffect(() => {
-    getUser();
-  }, []);
-  useEffect(() => {
-    if (state.isAuthenticated === true || accessToken !== null) {
+    if (state.isAuthenticated === true) {
       navigate("/Dashboard");
-    } else {
-      navigate("/SignIn");
     }
-  }, [state.isAuthenticated, accessToken]);
+  }, [state.isAuthenticated]);
   return (
-    <Routes>
-      {/* Authentication Routes */}
-      <Route path="/" element={<Auth />}>
-        <Route index element={<SignIn />} />
-        <Route path="/SignIn" index element={<SignIn />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        <Route path=":id/verify/:token" element={<EmailVerified />} />
-        <Route path="/ForgotPassword" element={<ForgotPassword />} />
-        <Route path="/password-reset/:id/:token" element={<PasswordReset />} />
-      </Route>
-      {/* Dashboard Routes */}
-      {
-        <Route path="/Dashboard" element={<UserDashboard />}>
+    <React.Fragment>
+      <Routes>
+        <Route path="/" element={<Auth />}>
+          <Route index element={<SignIn />} />
+          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path=":id/verify/:token" element={<EmailVerified />} />
+          <Route path="/ForgotPassword" element={<ForgotPassword />} />
+          <Route
+            path="/password-reset/:id/:token"
+            element={<PasswordReset />}
+          />
+        </Route>
+        <Route
+          path="/Dashboard"
+          element={
+            state.isAuthenticated === true ? (
+              <UserDashboard />
+            ) : (
+              <Navigate replace to="/SignIn" />
+            )
+          }
+        >
           <Route index element={<Home />} />
         </Route>
-      }
-    </Routes>
+        <Route path="*" index element={<NotFoundPage />} />
+      </Routes>
+      <CustomSnackbar />
+    </React.Fragment>
   );
 }
 

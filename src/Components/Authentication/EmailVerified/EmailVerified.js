@@ -9,14 +9,13 @@ export default function EmailVerified() {
   const state = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(verifyemailurl(params));
-  }, [params]);
+  }, []);
   return (
     <div>
       {state?.urlValid ? (
         <div>
           <h2>Email Verified Successfully</h2>
           <Link to="/SignIn" className="signup-text">
-            {" "}
             <CustomButton
               variant="contained"
               text="Continue"
@@ -26,7 +25,17 @@ export default function EmailVerified() {
           </Link>
         </div>
       ) : (
-        <h2>404 Not Found</h2>
+        <React.Fragment>
+          <h2>404 Not Found</h2>
+          <Link to="/SignIn" className="signup-text">
+            <CustomButton
+              variant="contained"
+              text="Go back"
+              size="large"
+              fullWidth
+            />
+          </Link>
+        </React.Fragment>
       )}
     </div>
   );

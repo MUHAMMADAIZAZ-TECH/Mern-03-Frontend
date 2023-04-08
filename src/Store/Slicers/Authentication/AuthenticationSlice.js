@@ -15,52 +15,29 @@ const initialState = {
   User: {},
   isAuthenticated: false,
   urlValid: false,
+  open: false,
 };
-export const signin = createAsyncThunk("signin", async ({ state }) => {
-  const response = await SignIn(state);
-  return response;
-});
-export const signup = createAsyncThunk("signup", async ({ state }) => {
-  const response = await SignUp(state);
-  return response;
-});
-export const verifyemailurl = createAsyncThunk(
-  "verifyemailurl",
-  async (params) => {
-    const response = await verifyEmailUrl(params);
-    return response;
-  }
-);
-export const resetpassword = createAsyncThunk(
-  "resetpassword",
-  async (state) => {
-    const response = await resetPassword(state);
-    return response;
-  }
-);
-export const verifyresetpasswordurl = createAsyncThunk(
-  "verifyresetpasswordurl",
-  async (params) => {
-    const response = await verifyResetPasswordurl(params);
-    return response;
-  }
-);
-export const updatenewpassword = createAsyncThunk(
-  "updatenewpassword",
-  async (params) => {
-    const response = await UpdateNewPassword(params);
-    return response;
-  }
-);
+
 export const authSlice = createSlice({
   name: "authentication",
   initialState,
   reducers: {
-    clearMessage: (state) => (state = initialState),
+    resetauthstates: (state) => (state = initialState),
+    clearMessage: (state) => {
+      state.message = null;
+      state.error = null;
+      state.loading = false;
+    },
     authenticateUser: (state, action) => {
       state.error = null;
       state.User = action.payload.user;
       state.isAuthenticated = action.payload.success;
+      state.open = true;
+      state.message = action.payload.message;
+    },
+    hideMessage: (state) => {
+      state.open = false;
+      state.message = null;
     },
   },
   extraReducers: (builder) => {
@@ -72,7 +49,9 @@ export const authSlice = createSlice({
       .addCase(signin.fulfilled, (state, action) => {
         state.loading = false;
         state.User = action.payload.user;
+        state.isAuthenticated = action.payload.success;
         state.message = action.payload.message;
+        state.open = true;
       })
       .addCase(signin.rejected, (state, action) => {
         state.loading = false;
@@ -86,6 +65,7 @@ export const authSlice = createSlice({
       .addCase(signup.fulfilled, (state, action) => {
         state.loading = false;
         state.message = action.payload.message;
+        state.open = true;
       })
       .addCase(signup.rejected, (state, action) => {
         state.loading = false;
@@ -113,6 +93,7 @@ export const authSlice = createSlice({
       .addCase(resetpassword.fulfilled, (state, action) => {
         state.loading = false;
         state.message = action.payload.message;
+        state.open = true;
       })
       .addCase(resetpassword.rejected, (state, action) => {
         state.loading = false;
@@ -128,6 +109,7 @@ export const authSlice = createSlice({
         state.loading = false;
         state.message = action.payload.message;
         state.urlValid = action.payload.urlValid;
+        state.open = true;
       })
       .addCase(verifyresetpasswordurl.rejected, (state, action) => {
         state.loading = false;
@@ -141,6 +123,7 @@ export const authSlice = createSlice({
       .addCase(updatenewpassword.fulfilled, (state, action) => {
         state.loading = false;
         state.message = action.payload.message;
+        state.open = true;
       })
       .addCase(updatenewpassword.rejected, (state, action) => {
         state.loading = false;
@@ -148,7 +131,49 @@ export const authSlice = createSlice({
       });
   },
 });
-
+export const signin = createAsyncThunk(
+  "authentication/signin",
+  async ({ state }) => {
+    const response = await SignIn(state);
+    return response;
+  }
+);
+export const signup = createAsyncThunk(
+  "authentication/signup",
+  async ({ state }) => {
+    const response = await SignUp(state);
+    return response;
+  }
+);
+export const verifyemailurl = createAsyncThunk(
+  "authentication/verifyemailurl",
+  async (params) => {
+    const response = await verifyEmailUrl(params);
+    return response;
+  }
+);
+export const resetpassword = createAsyncThunk(
+  "authentication/resetpassword",
+  async (state) => {
+    const response = await resetPassword(state);
+    return response;
+  }
+);
+export const verifyresetpasswordurl = createAsyncThunk(
+  "authentication/verifyresetpasswordurl",
+  async (params) => {
+    const response = await verifyResetPasswordurl(params);
+    return response;
+  }
+);
+export const updatenewpassword = createAsyncThunk(
+  "authentication/updatenewpassword",
+  async (params) => {
+    const response = await UpdateNewPassword(params);
+    return response;
+  }
+);
 export const authstate = (state) => state.auth;
-export const { clearMessage, authenticateUser } = authSlice.actions;
+export const { clearMessage, authenticateUser, resetauthstates, hideMessage } =
+  authSlice.actions;
 export default authSlice.reducer;

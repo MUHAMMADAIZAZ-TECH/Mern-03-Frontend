@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearallstates } from "../../../Store/Slicers/UserSlicer/UserSlicer";
+import { resetauthstates } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { Image4, Image6, Image7, Image8 } from "../../../Assests/Images/index";
 import { Apps, Search, ArrowDropDown } from "@mui/icons-material";
 import {
@@ -20,8 +20,8 @@ export default function Header() {
   const state = useSelector((state) => state.auth);
   const { User } = state;
   const LogOut = () => {
-    localStorage.clear();
     window.open("http://localhost:8080/auth/logout", "_self");
+    dispatch(resetauthstates());
   };
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
@@ -39,11 +39,6 @@ export default function Header() {
     "Teams",
     "Apps",
   ];
-  useEffect(() => {
-    return () => {
-      dispatch(clearallstates());
-    };
-  }, []);
   return (
     <AppBar
       position="fixed"
@@ -99,7 +94,7 @@ export default function Header() {
         <IconButton onClick={handleClick}>
           <Avatar
             alt="John Doe"
-            src="/static/images/avatar/1.jpg"
+            src={User?.AvatarUrl}
             sx={{ width: 34, height: 34 }}
           />
         </IconButton>

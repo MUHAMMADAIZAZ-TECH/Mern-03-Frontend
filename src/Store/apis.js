@@ -4,8 +4,6 @@ axios.defaults.withCredentials = true;
 export const SignIn = async (state) => {
   try {
     const response = await axios.post(`signin`, state);
-    localStorage.setItem("accessToken", response.data.accessToken);
-    localStorage.setItem("user", JSON.stringify(response.data.user));
     return response.data;
   } catch (error) {
     return error.response.data;

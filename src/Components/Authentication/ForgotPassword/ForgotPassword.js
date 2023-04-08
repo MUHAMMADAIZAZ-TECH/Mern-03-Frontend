@@ -28,11 +28,6 @@ export default function ForgotPassword() {
       dispatch(resetpassword({ Email: values.Email }));
     },
   });
-  useEffect(() => {
-    return () => {
-      dispatch(clearMessage());
-    };
-  }, []);
   return (
     <React.Fragment>
       <h5 className="form-heading"> Can't log in?</h5>
@@ -60,7 +55,7 @@ export default function ForgotPassword() {
             size="large"
             fullWidth
             onClick={formik.handleSubmit}
-            disableBtn={!formik.isValid || formik.isSubmitting}
+            disableBtn={!formik.isValid && formik.isSubmitting}
           />
         </Grid>
       </Grid>
