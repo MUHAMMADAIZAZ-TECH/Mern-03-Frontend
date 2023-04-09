@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { resetauthstates } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { Image4, Image6, Image7, Image8 } from "../../../Assests/Images/index";
 import { Apps, Search, ArrowDropDown } from "@mui/icons-material";
@@ -17,16 +17,17 @@ import {
 } from "@mui/material";
 export default function Header() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.auth);
-  const { User } = state;
+  const User = JSON.parse(localStorage.getItem('user'));
+  // const { User } = state;
+  console.log(User)
   const LogOut = () => {
-    if(User.Provider==="github"){
-      window.open("http://localhost:8080/auth/logout", "_self");
+    if(User.Provider ==="normal"){
       dispatch(resetauthstates());
+      deleteCookies()
     }
     else{
-      deleteCookies()
-      dispatch(resetauthstates());
+      window.open("http://localhost:8080/auth/logout", "_self");
+
     }
   };
   const deleteCookies = () => {

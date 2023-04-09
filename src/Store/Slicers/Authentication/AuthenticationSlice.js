@@ -30,6 +30,8 @@ export const authSlice = createSlice({
     },
     authenticateUser: (state, action) => {
       state.error = null;
+      localStorage.setItem("user",JSON.stringify(action.payload.user))
+      localStorage.setItem("isauthenticated",action.payload.success)
       state.User = action.payload.user;
       state.isAuthenticated = action.payload.success;
       state.open = true;
@@ -49,6 +51,9 @@ export const authSlice = createSlice({
       })
       .addCase(signin.fulfilled, (state, action) => {
         state.loading = false;
+        console.log(action.payload.user)
+        localStorage.setItem("user",JSON.stringify(action.payload.user))
+        localStorage.setItem("isauthenticated",action.payload.success)
         state.User = action.payload.user;
         state.isAuthenticated = action.payload.success;
         state.message = action.payload.message;

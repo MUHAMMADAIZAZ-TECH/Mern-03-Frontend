@@ -67,7 +67,7 @@ function App() {
           />
         </Route>
         <Route path="/Dashboard" element={
-            state.isAuthenticated === true ? (
+            state.isAuthenticated === true || document.cookie ? (
               <UserDashboard />
             ) : (
               <Navigate replace to="/SignIn" />
