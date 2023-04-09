@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { TextInput, CustomButton } from "../../UI-Components/Index";
+import { TextInput, CustomButton } from "../../UI-Components/";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";

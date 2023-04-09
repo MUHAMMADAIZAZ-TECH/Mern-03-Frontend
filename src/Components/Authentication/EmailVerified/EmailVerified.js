@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { CustomButton } from "../../UI-Components/Index";
+import { CustomButton } from "../../UI-Components/";
 import { verifyemailurl } from "../../../Store/Slicers/Authentication/AuthenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
 export default function EmailVerified() {

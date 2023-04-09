@@ -33,6 +33,7 @@ export const authSlice = createSlice({
       state.User = action.payload.user;
       state.isAuthenticated = action.payload.success;
       state.open = true;
+      state.loading = false;
       state.message = action.payload.message;
     },
     hideMessage: (state) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { TextInput, CustomButton } from "../../UI-Components/Index";
+import { TextInput, CustomButton } from "../../UI-Components/";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { signup } from "../../../Store/Slicers/Authentication/AuthenticationSlice";

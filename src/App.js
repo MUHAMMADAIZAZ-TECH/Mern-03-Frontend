@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect ,useState } from "react";
 import Auth, {
   SignIn,
   SignUp,
@@ -8,15 +8,16 @@ import Auth, {
   PasswordReset,
 } from "./Components/Authentication/Auth";
 import UserDashboard from "./Components/Dashboard/UserDashboard";
-import { CustomSnackbar } from "./Components/UI-Components/Index";
+import { CustomSnackbar, ScreenLoader } from "./Components/UI-Components/";
 import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
-import { Home, NotFoundPage } from "./Components/Pages";
+import { Home, NotFoundPage, ConnectionLost } from "./Components/Pages";
 import { authenticateUser } from "./Store/Slicers/Authentication/AuthenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
 function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
   const { User } = state;
   const getUser = async () => {
     try {
@@ -43,8 +44,18 @@ function App() {
       navigate("/Dashboard");
     }
   }, [state.isAuthenticated]);
+  useEffect(() => {
+    window.addEventListener("offline", () => setIsOnline(false));
+    window.addEventListener("online", () => setIsOnline(true));
+
+    return () => {
+      window.removeEventListener("offline", () => setIsOnline(false));
+      window.removeEventListener("online", () => setIsOnline(true));
+    };
+  }, []);
   return (
     <React.Fragment>
+      {isOnline? 
       <Routes>
         <Route path="/" element={<Auth />}>
           <Route index element={<SignIn />} />
@@ -52,14 +63,10 @@ function App() {
           <Route path="/SignUp" element={<SignUp />} />
           <Route path=":id/verify/:token" element={<EmailVerified />} />
           <Route path="/ForgotPassword" element={<ForgotPassword />} />
-          <Route
-            path="/password-reset/:id/:token"
-            element={<PasswordReset />}
+          <Route path="/password-reset/:id/:token" element={<PasswordReset />}
           />
         </Route>
-        <Route
-          path="/Dashboard"
-          element={
+        <Route path="/Dashboard" element={
             state.isAuthenticated === true ? (
               <UserDashboard />
             ) : (
@@ -70,8 +77,9 @@ function App() {
           <Route index element={<Home />} />
         </Route>
         <Route path="*" index element={<NotFoundPage />} />
-      </Routes>
+      </Routes>: <ConnectionLost/>}
       <CustomSnackbar />
+      {state.loading?<ScreenLoader/>:null}
     </React.Fragment>
   );
 }

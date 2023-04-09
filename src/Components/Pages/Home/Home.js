@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card } from "../../UI-Components/Index";
+import { Card } from "../../UI-Components/";
 import {
   Edit,
   Cached,

@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, CustomButton } from "../../UI-Components/Index";
+import { TextInput, CustomButton } from "../../UI-Components/";
 import { Grid } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";

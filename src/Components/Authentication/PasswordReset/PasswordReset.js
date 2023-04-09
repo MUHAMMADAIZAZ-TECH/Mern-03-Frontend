@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { TextInput, CustomButton } from "../../UI-Components/Index";
+import { TextInput, CustomButton } from "../../UI-Components/";
 import { Grid } from "@mui/material";
 import {
   verifyresetpasswordurl,
