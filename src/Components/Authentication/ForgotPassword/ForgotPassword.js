@@ -52,7 +52,7 @@ export default function ForgotPassword() {
             size="large"
             fullWidth
             onClick={formik.handleSubmit}
-            disableBtn={!formik.isValid && formik.isSubmitting}
+            disableBtn={!formik.isValid || formik.isSubmitting}
           />
         </Grid>
       </Grid>

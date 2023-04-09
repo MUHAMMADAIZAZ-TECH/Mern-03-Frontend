@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useMemo } from "react";
 import TextField from "@mui/material/TextField";
 
 const TextInput = ({
@@ -26,7 +26,8 @@ const TextInput = ({
   height,
   onBlur,
 }) => {
-  return (
+
+  const memoizedComponent = useMemo(() => (
     <TextField
       ref={ref && ref}
       id={id && id}
@@ -55,7 +56,33 @@ const TextInput = ({
       onBlur={onBlur}
       inputProps={{ maxLength: textLength }}
     />
-  );
+  ), [
+    ref,
+    id,
+    focus,
+    value,
+    label,
+    width,
+    required,
+    disable,
+    type,
+    size,
+    helper,
+    error,
+    fullWidth,
+    placeholder,
+    textLength,
+    margin,
+    change,
+    name,
+    variant,
+    color,
+    onInput,
+    height,
+    onBlur,
+  ]);
+
+  return memoizedComponent;
 };
 
 export default TextInput;

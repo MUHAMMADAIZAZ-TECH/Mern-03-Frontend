@@ -20,9 +20,21 @@ export default function Header() {
   const state = useSelector((state) => state.auth);
   const { User } = state;
   const LogOut = () => {
-    window.open("http://localhost:8080/auth/logout", "_self");
-    dispatch(resetauthstates());
+    if(User.Provider==="github"){
+      window.open("http://localhost:8080/auth/logout", "_self");
+      dispatch(resetauthstates());
+    }
+    else{
+      deleteCookies()
+      dispatch(resetauthstates());
+    }
   };
+  const deleteCookies = () => {
+    var Cookies = document.cookie.split(';');
+    for (var i = 0; i < Cookies.length; i++)
+    document.cookie = Cookies[i] + "=;expires=" + new Date(0).toUTCString();
+   
+ }
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

@@ -17,6 +17,7 @@ function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
+  const { User } = state;
   const getUser = async () => {
     try {
       const response = await axios.get("auth/login/success");
@@ -32,7 +33,11 @@ function App() {
       navigate("/SignIn");
     }
   };
-  useEffect(() => getUser(), []);
+  useEffect(() => {
+    if(!User.Provider && User.Provider !=="normal"){
+      getUser()
+    }
+  }, []);
   useEffect(() => {
     if (state.isAuthenticated === true) {
       navigate("/Dashboard");

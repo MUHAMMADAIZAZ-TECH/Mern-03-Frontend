@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useMemo } from "react";
 import Button from "@mui/material/Button";
 
 const CustomButton = ({
@@ -12,7 +12,7 @@ const CustomButton = ({
   align,
   variant,
 }) => {
-  return (
+  const memoizedButton = useMemo(() => (
     <Button
       fullWidth={fullWidth}
       variant={variant}
@@ -25,6 +25,8 @@ const CustomButton = ({
     >
       {text}
     </Button>
-  );
+  ), [fullWidth, variant, size, icon, disableBtn, onClick, endIcon, align, text]);
+
+  return memoizedButton;
 };
 export default CustomButton;
