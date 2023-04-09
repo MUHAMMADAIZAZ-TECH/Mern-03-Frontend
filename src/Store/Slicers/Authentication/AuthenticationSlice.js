@@ -16,6 +16,7 @@ const initialState = {
   isAuthenticated: false,
   urlValid: false,
   open: false,
+  token:null
 };
 
 export const authSlice = createSlice({
@@ -34,6 +35,7 @@ export const authSlice = createSlice({
       state.isAuthenticated = action.payload.success;
       state.open = true;
       state.message = action.payload.message;
+      state.token = action.payload.token;
     },
     hideMessage: (state) => {
       state.open = false;
@@ -51,6 +53,7 @@ export const authSlice = createSlice({
         state.User = action.payload.user;
         state.isAuthenticated = action.payload.success;
         state.message = action.payload.message;
+        state.token = action.payload.token;
         state.open = true;
       })
       .addCase(signin.rejected, (state, action) => {
