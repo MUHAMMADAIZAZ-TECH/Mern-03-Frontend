@@ -124,7 +124,6 @@ const SignUp = () => {
             size="large"
             fullWidth
             onClick={formik.handleSubmit}
-            disableBtn={!formik.isValid || formik.isSubmitting}
           />
         </Grid>
         <Grid item xs={12}>

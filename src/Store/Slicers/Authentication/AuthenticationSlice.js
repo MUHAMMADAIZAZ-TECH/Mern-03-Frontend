@@ -51,7 +51,6 @@ export const authSlice = createSlice({
       })
       .addCase(signin.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload.user)
         localStorage.setItem("user",JSON.stringify(action.payload.user))
         localStorage.setItem("isauthenticated",action.payload.success)
         state.User = action.payload.user;
