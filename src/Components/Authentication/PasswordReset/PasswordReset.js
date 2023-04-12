@@ -47,7 +47,7 @@ export default function PasswordReset() {
   }, [params.id, params.token]);
   return (
     <React.Fragment>
-      {!state?.urlValid ? (
+      {state?.urlValid ? (
         <React.Fragment>
           <h5 className="form-heading"> Enter new password</h5>
           <Grid
